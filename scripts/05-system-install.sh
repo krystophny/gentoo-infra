@@ -24,8 +24,20 @@ locale-gen
 eselect locale set en_US.utf8
 env-update && source /etc/profile
 
-info "Rebuilding @world with new USE flags (this will take a while)..."
-emerge --update --deep --newuse @world
+# Detect CPU flags FIRST (before rebuilding)
+info "Detecting CPU-specific flags..."
+CPU_FLAGS=$(cpuid2cpuflags | cut -d: -f2)
+echo "CPU_FLAGS_X86=\"${CPU_FLAGS}\"" >> /etc/portage/make.conf
+success "Added to make.conf: CPU_FLAGS_X86=\"${CPU_FLAGS}\""
+
+# Full rebuild with our optimized flags (-O3, LTO)
+info "Rebuilding @system (toolchain) with optimized flags..."
+info "This will take several hours. Go get coffee."
+emerge -e @system
+
+info "Rebuilding @world (everything) with optimized flags..."
+info "This will take many more hours. Go to sleep."
+emerge -e @world
 
 info "Installing essential system packages..."
 emerge --verbose --noreplace \
@@ -94,13 +106,6 @@ emerge --verbose --noreplace dev-vcs/tea || {
     curl -sL "https://dl.gitea.com/tea/main/tea-main-linux-amd64" -o /usr/local/bin/tea
     chmod +x /usr/local/bin/tea
 }
-
-# Detect and set CPU flags
-info "Detecting CPU-specific flags..."
-CPU_FLAGS=$(cpuid2cpuflags | cut -d: -f2)
-echo "CPU_FLAGS_X86=\"${CPU_FLAGS}\"" >> /etc/portage/make.conf
-echo ""
-echo "Added to make.conf: CPU_FLAGS_X86=\"${CPU_FLAGS}\""
 
 success "Base system installed!"
 echo ""
