@@ -1,0 +1,2 @@
+# Python benefits from -fno-semantic-interposition for faster imports
+dev-lang/python python-perf.conf
