@@ -4,11 +4,10 @@ dev-build/cmake -qt5 -qt6
 dev-build/meson -python_single_target_python3_11
 dev-build/ninja -doc
 
-# Editors
-app-editors/vim -python minimal
+# Editors (full vim, not minimal)
+app-editors/vim -minimal python lua
 
-# Version control
-dev-vcs/git -perl
-
-# Languages (besides Fortran in GCC)
+# Languages
 dev-lang/python sqlite
+dev-lang/rust clippy rustfmt
+dev-lang/go -doc

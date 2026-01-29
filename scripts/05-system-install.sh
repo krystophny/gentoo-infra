@@ -42,6 +42,12 @@ emerge --verbose --noreplace \
     app-portage/gentoolkit \
     app-portage/cpuid2cpuflags
 
+info "Installing development tools (Rust, Go, ripgrep)..."
+emerge --verbose --noreplace \
+    dev-lang/rust \
+    dev-lang/go \
+    sys-apps/ripgrep
+
 # Detect and set CPU flags
 info "Detecting CPU-specific flags..."
 CPU_FLAGS=$(cpuid2cpuflags | cut -d: -f2)
