@@ -1,0 +1,5 @@
+# Gaming packages that may need ~amd64
+games-util/steam-launcher ~amd64
+games-util/gamemode ~amd64
+app-emulation/wine-proton ~amd64
+games-emulation/mame ~amd64

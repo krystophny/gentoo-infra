@@ -1,0 +1,25 @@
+# Scientific Computing Stack (enable when needed)
+# Uncomment as required for numerical computing
+
+# Math libraries
+sci-libs/openblas openmp
+sci-libs/lapack lapack64 openmp
+sci-libs/fftw openmp mpi threads
+sci-libs/gsl -openmp
+
+# MPI stack
+sys-cluster/openmpi romio threads cxx fortran
+sci-libs/hdf5 mpi fortran cxx szip
+sci-libs/netcdf mpi hdf5
+sci-libs/netcdf-fortran mpi
+
+# Sparse solvers
+sci-libs/suitesparse metis cholmod umfpack
+sci-libs/mumps mpi scotch metis
+sci-libs/petsc fortran hypre mumps complex-scalars
+sci-libs/slepc mpi
+
+# Python scientific stack
+dev-python/numpy lapack
+dev-python/scipy sparse
+dev-python/matplotlib gtk3

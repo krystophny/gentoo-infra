@@ -1,0 +1,2 @@
+# GCC 16 snapshot (bleeding edge, parallel install)
+=sys-devel/gcc-16* ~amd64

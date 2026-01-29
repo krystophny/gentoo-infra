@@ -1,0 +1,12 @@
+# NVIDIA Driver Configuration
+# kernel-open: Use open-source kernel modules (nvidia-open)
+# modules: Build kernel modules
+# tools: nvidia-smi and management utilities
+x11-drivers/nvidia-drivers kernel-open modules tools abi_x86_32
+
+# Disable nouveau everywhere
+media-libs/mesa -video_cards_nouveau vulkan
+x11-libs/libdrm video_cards_nouveau
+
+# Vulkan support
+media-libs/vulkan-loader layers

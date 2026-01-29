@@ -1,0 +1,13 @@
+# Scientific packages: IEEE-compliant high performance
+
+sci-libs/openblas sci-perf.conf
+sci-libs/lapack sci-perf.conf
+sci-libs/fftw sci-perf.conf
+sci-libs/hdf5 sci-perf.conf
+sci-libs/netcdf sci-perf.conf
+sci-libs/netcdf-c sci-perf.conf
+sci-libs/netcdf-fortran sci-perf.conf
+sci-libs/petsc sci-perf.conf
+sci-libs/gsl sci-perf.conf
+dev-python/numpy sci-perf.conf
+dev-python/scipy sci-perf.conf

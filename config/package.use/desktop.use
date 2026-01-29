@@ -1,0 +1,18 @@
+# XFCE Desktop Environment
+xfce-base/xfce4-meta -minimal
+xfce-base/xfce4-session -screensaver
+xfce-base/thunar trash-panel-plugin udisks
+xfce-base/xfce4-power-manager networkmanager
+xfce-extra/xfce4-terminal -utempter
+
+# X11 Server
+x11-base/xorg-server -minimal udev elogind
+x11-base/xorg-drivers -video_cards_nouveau
+
+# Fonts
+media-fonts/dejavu -X
+media-fonts/liberation-fonts -X
+
+# Terminal and shell
+app-shells/bash -net
+x11-terms/xterm truetype unicode

@@ -1,0 +1,19 @@
+# Core system packages
+# Full compiler with Fortran, Graphite loop opts, LTO, and PGO bootstrap
+sys-devel/gcc fortran graphite lto pgo
+sys-devel/binutils gold plugins
+sys-devel/gcc-config native-symlinks
+
+# Bootloader
+sys-boot/grub device-mapper mount
+
+# System libraries
+sys-libs/glibc nscd
+
+# Networking
+net-misc/dhcpcd embedded
+net-misc/openssh -bindist
+
+# Utilities
+app-editors/vim minimal -X
+sys-apps/portage native-extensions

@@ -1,0 +1,14 @@
+# Development Tools
+dev-vcs/git -perl -gpg -webdav curl
+dev-build/cmake -qt5 -qt6
+dev-build/meson -python_single_target_python3_11
+dev-build/ninja -doc
+
+# Editors
+app-editors/vim -python minimal
+
+# Version control
+dev-vcs/git -perl
+
+# Languages (besides Fortran in GCC)
+dev-lang/python sqlite

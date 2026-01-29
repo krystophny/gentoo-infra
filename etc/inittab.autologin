@@ -1,0 +1,8 @@
+# /etc/inittab snippet for TTY autologin
+# Replace USERNAME with your actual username
+
+# Original line (comment out):
+# c1:12345:respawn:/sbin/agetty 38400 tty1 linux
+
+# Autologin line (use this):
+c1:12345:respawn:/sbin/agetty --autologin USERNAME 38400 tty1 linux

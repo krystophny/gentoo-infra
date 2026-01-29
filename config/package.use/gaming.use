@@ -1,0 +1,13 @@
+# Steam and Gaming
+games-util/steam-launcher steamruntime
+games-util/gamemode -systemd
+
+# Wine/Proton support
+app-emulation/wine-proton abi_x86_32 gecko mono vulkan
+virtual/wine abi_x86_32
+
+# Mesa for Vulkan
+media-libs/mesa vulkan vaapi
+
+# SDL2 with Vulkan
+media-libs/libsdl2 vulkan haptic joystick

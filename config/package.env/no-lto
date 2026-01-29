@@ -1,0 +1,12 @@
+# Packages that break with LTO
+# Based on GentooLTO project and lfs-infra experience
+
+sys-libs/glibc no-lto.conf
+dev-libs/elfutils no-lto.conf
+sys-apps/grub no-lto.conf
+dev-lang/rust no-lto.conf
+dev-lang/go no-lto.conf
+app-emulation/wine* no-lto.conf
+dev-db/sqlite no-lto.conf
+media-libs/mesa no-lto.conf
+sys-libs/libseccomp no-lto.conf

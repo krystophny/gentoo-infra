@@ -1,0 +1,8 @@
+# Packages requiring IEEE floating-point compliance
+# No fast-math or aggressive FP optimizations
+
+dev-libs/openssl safe-cflags.conf
+app-crypt/gnupg safe-cflags.conf
+dev-libs/gmp safe-cflags.conf
+dev-libs/mpfr safe-cflags.conf
+dev-libs/mpc safe-cflags.conf

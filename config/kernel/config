@@ -1,0 +1,171 @@
+# Kernel Configuration Fragment for Gentoo
+# Optimized for NVIDIA-open + KVM + RT performance
+# Apply on top of a working defconfig:
+#   make defconfig
+#   scripts/kconfig/merge_config.sh .config /path/to/this/config
+
+# =============================================================================
+# General Setup
+# =============================================================================
+CONFIG_LOCALVERSION="-gentoo"
+CONFIG_KERNEL_LZ4=y
+
+# =============================================================================
+# Processor and CPU Optimizations
+# =============================================================================
+CONFIG_PROCESSOR_SELECT=y
+CONFIG_CPU_SUP_AMD=y
+CONFIG_CPU_SUP_INTEL=y
+CONFIG_MCORE2=y
+# For AMD Zen: CONFIG_MZEN3=y (requires kernel 5.17+)
+
+# Performance
+CONFIG_PREEMPT=y
+CONFIG_NO_HZ_FULL=y
+CONFIG_HIGH_RES_TIMERS=y
+CONFIG_HZ_1000=y
+CONFIG_HZ=1000
+
+# =============================================================================
+# Power Management
+# =============================================================================
+CONFIG_CPU_FREQ=y
+CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
+CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
+
+# =============================================================================
+# Memory Management
+# =============================================================================
+CONFIG_TRANSPARENT_HUGEPAGE=y
+CONFIG_TRANSPARENT_HUGEPAGE_ALWAYS=y
+
+# =============================================================================
+# Modules
+# =============================================================================
+CONFIG_MODULES=y
+CONFIG_MODULE_UNLOAD=y
+CONFIG_MODULE_FORCE_UNLOAD=y
+
+# =============================================================================
+# PCI and Device Support
+# =============================================================================
+CONFIG_PCI=y
+CONFIG_PCI_MSI=y
+CONFIG_PCIEPORTBUS=y
+CONFIG_HOTPLUG_PCI=y
+
+# =============================================================================
+# Graphics and Display - NVIDIA Open
+# =============================================================================
+CONFIG_DRM=y
+CONFIG_DRM_KMS_HELPER=m
+
+# DISABLE conflicting drivers for NVIDIA
+# CONFIG_DRM_NOUVEAU is not set
+# CONFIG_DRM_SIMPLEDRM is not set
+# CONFIG_FB_NVIDIA is not set
+# CONFIG_FB_RIVA is not set
+
+# Console and framebuffer for early boot
+CONFIG_VGA_CONSOLE=y
+CONFIG_FRAMEBUFFER_CONSOLE=y
+CONFIG_FB_EFI=y
+CONFIG_FB_VESA=y
+
+# =============================================================================
+# KVM Virtualization
+# =============================================================================
+CONFIG_VIRTUALIZATION=y
+CONFIG_KVM=m
+CONFIG_KVM_INTEL=m
+CONFIG_KVM_AMD=m
+CONFIG_VHOST_NET=m
+CONFIG_VHOST_VSOCK=m
+
+# VirtIO devices for guests
+CONFIG_VIRTIO=m
+CONFIG_VIRTIO_PCI=m
+CONFIG_VIRTIO_BLK=m
+CONFIG_VIRTIO_NET=m
+CONFIG_VIRTIO_CONSOLE=m
+CONFIG_VIRTIO_BALLOON=m
+
+# =============================================================================
+# Networking
+# =============================================================================
+CONFIG_NET=y
+CONFIG_INET=y
+CONFIG_IPV6=y
+CONFIG_NETFILTER=y
+
+# Bridge for VMs
+CONFIG_BRIDGE=m
+CONFIG_BRIDGE_NETFILTER=m
+CONFIG_NETFILTER_XT_MATCH_PHYSDEV=m
+
+# =============================================================================
+# Storage
+# =============================================================================
+CONFIG_BLK_DEV_NVME=y
+CONFIG_SATA_AHCI=y
+CONFIG_ATA=y
+
+# Filesystems
+CONFIG_EXT4_FS=y
+CONFIG_XFS_FS=m
+CONFIG_BTRFS_FS=m
+CONFIG_VFAT_FS=y
+CONFIG_FAT_DEFAULT_UTF8=y
+CONFIG_NTFS3_FS=m
+CONFIG_FUSE_FS=m
+
+# EFI
+CONFIG_EFI=y
+CONFIG_EFI_STUB=y
+CONFIG_EFI_PARTITION=y
+CONFIG_EFIVAR_FS=y
+
+# =============================================================================
+# Input Devices
+# =============================================================================
+CONFIG_INPUT_EVDEV=y
+CONFIG_INPUT_KEYBOARD=y
+CONFIG_KEYBOARD_ATKBD=y
+CONFIG_INPUT_MOUSE=y
+CONFIG_MOUSE_PS2=y
+
+# =============================================================================
+# Sound (ALSA for PipeWire)
+# =============================================================================
+CONFIG_SOUND=y
+CONFIG_SND=m
+CONFIG_SND_PCI=y
+CONFIG_SND_HDA_INTEL=m
+CONFIG_SND_HDA_CODEC_HDMI=m
+CONFIG_SND_HDA_CODEC_REALTEK=m
+CONFIG_SND_USB_AUDIO=m
+
+# =============================================================================
+# USB
+# =============================================================================
+CONFIG_USB=y
+CONFIG_USB_XHCI_HCD=y
+CONFIG_USB_EHCI_HCD=y
+CONFIG_USB_STORAGE=m
+
+# =============================================================================
+# Security
+# =============================================================================
+CONFIG_SECURITY=y
+CONFIG_SECURITYFS=y
+# CONFIG_SECURITY_SELINUX is not set
+# CONFIG_SECURITY_APPARMOR is not set
+
+# =============================================================================
+# Firmware
+# =============================================================================
+CONFIG_FW_LOADER=y
+CONFIG_EXTRA_FIRMWARE=""
+CONFIG_EXTRA_FIRMWARE_DIR="/lib/firmware"

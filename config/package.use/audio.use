@@ -1,0 +1,12 @@
+# PipeWire Audio Stack
+media-video/pipewire sound-server pipewire-alsa jack-sdk v4l
+media-video/wireplumber -lua_single_target_lua5-4 lua_single_target_luajit
+
+# Disable PulseAudio daemon (PipeWire provides compatibility)
+media-libs/libpulse -daemon
+
+# ALSA utilities
+media-sound/alsa-utils -libsamplerate
+
+# Audio applications compatibility
+media-libs/libsdl2 pipewire -pulseaudio
