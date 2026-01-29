@@ -69,6 +69,16 @@ info "Enabling essential services..."
 rc-update add dhcpcd default
 rc-update add sshd default
 
+# RAID: Generate mdadm.conf if RAID arrays exist
+if [[ -e /dev/md0 ]] || [[ -d /sys/block/md0 ]]; then
+    info "Detected RAID arrays, generating mdadm.conf..."
+    mdadm --detail --scan >> /etc/mdadm.conf
+    rc-update add mdraid boot
+    echo ""
+    echo "RAID configuration:"
+    cat /etc/mdadm.conf
+fi
+
 # Clean up
 info "Cleaning up..."
 rm -rf /var/cache/distfiles/*

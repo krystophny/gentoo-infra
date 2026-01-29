@@ -45,6 +45,7 @@ emerge --verbose --noreplace \
     sys-kernel/gentoo-sources \
     sys-apps/pciutils \
     sys-apps/usbutils \
+    sys-fs/mdadm \
     net-misc/dhcpcd \
     net-misc/openssh \
     app-editors/vim \
