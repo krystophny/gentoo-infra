@@ -42,11 +42,58 @@ emerge --verbose --noreplace \
     app-portage/gentoolkit \
     app-portage/cpuid2cpuflags
 
-info "Installing development tools (Rust, Go, ripgrep)..."
+info "Installing development tools..."
 emerge --verbose --noreplace \
     dev-lang/rust \
     dev-lang/go \
-    sys-apps/ripgrep
+    sys-apps/ripgrep \
+    sys-apps/fd \
+    app-shells/fzf \
+    sys-apps/bat \
+    sys-process/htop \
+    app-misc/tmux \
+    net-misc/curl \
+    app-misc/jq \
+    app-text/tree
+
+info "Installing build tools (cmake, meson, ninja, LLVM with flang+mlir)..."
+emerge --verbose --noreplace \
+    dev-build/cmake \
+    dev-build/meson \
+    dev-build/ninja \
+    sys-devel/llvm \
+    sys-devel/clang
+
+info "Installing containers (podman)..."
+emerge --verbose --noreplace \
+    app-containers/podman \
+    app-containers/crun
+
+info "Installing micromamba..."
+emerge --verbose --noreplace \
+    dev-python/micromamba || {
+    # If not in portage, install from binary
+    warn "micromamba not in portage, installing from binary..."
+    curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C /usr/local bin/micromamba
+}
+
+info "Installing git forge CLIs (GitHub, GitLab, Gitea)..."
+emerge --verbose --noreplace \
+    dev-util/github-cli \
+    dev-util/glab || {
+    # GitLab CLI might need manual install
+    warn "Installing glab from binary..."
+    curl -sL "https://gitlab.com/gitlab-org/cli/-/releases/permalink/latest/downloads/glab_linux_amd64" -o /usr/local/bin/glab
+    chmod +x /usr/local/bin/glab
+}
+
+# Gitea CLI (tea) - usually needs binary install
+info "Installing tea (Gitea CLI)..."
+emerge --verbose --noreplace dev-vcs/tea || {
+    warn "Installing tea from binary..."
+    curl -sL "https://dl.gitea.com/tea/main/tea-main-linux-amd64" -o /usr/local/bin/tea
+    chmod +x /usr/local/bin/tea
+}
 
 # Detect and set CPU flags
 info "Detecting CPU-specific flags..."

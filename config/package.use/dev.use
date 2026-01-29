@@ -11,3 +11,16 @@ app-editors/vim -minimal python lua
 dev-lang/python sqlite
 dev-lang/rust clippy rustfmt
 dev-lang/go -doc
+
+# LLVM/Clang with Flang (Fortran) and MLIR
+sys-devel/llvm mlir
+sys-devel/clang extra
+sys-libs/llvm-libunwind -static-libs
+dev-lang/mlir python
+
+# Containers
+app-containers/podman btrfs fuse
+
+# CLI tools
+app-shells/fzf tmux vim
+sys-apps/bat -less-syntax-highlighting
